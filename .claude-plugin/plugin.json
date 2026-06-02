@@ -1,19 +1,21 @@
 {
-  "name": "superpowers",
-  "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
-  "version": "5.1.0",
+  "name": "spec-driven-powers",
+  "description": "Spec-Driven Development skills for Claude Code: persistent specs (constitution + feature specs) that anchor intent, plus the full superpowers core library it builds on.",
+  "version": "0.1.0",
   "author": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com"
+    "name": "khoapnt-vng",
+    "email": "khoapnt@vng.com.vn"
   },
-  "homepage": "https://github.com/obra/superpowers",
-  "repository": "https://github.com/obra/superpowers",
+  "homepage": "https://github.com/khoapnt-vng/ai-native-software-development",
+  "repository": "https://github.com/khoapnt-vng/ai-native-software-development",
   "license": "MIT",
   "keywords": [
     "skills",
+    "spec-driven-development",
+    "sdd",
+    "specs",
+    "planning",
     "tdd",
-    "debugging",
-    "collaboration",
     "best-practices",
     "workflows"
   ]

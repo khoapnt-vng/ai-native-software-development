@@ -1,6 +1,15 @@
-# Superpowers
+# spec-driven-powers
 
-Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
+**Spec-Driven Development for AI coding agents** — persistent specs that anchor
+intent across sessions, so you can make large changes without the drift of long
+prompt dialogues. *The spec is the brain; the agent is the muscle.*
+
+This plugin is a fork of [obra/superpowers](https://github.com/obra/superpowers)
+(MIT, © Jesse Vincent). It keeps the full superpowers core skills library and
+adds one skill: **`spec-driven-development`**. See `LICENSE` for the upstream
+license; original credit goes to the superpowers authors.
+
+Activate the SDD skill with `/spec-driven-powers:spec-driven-development`.
 
 ## Quickstart
 
@@ -172,6 +181,9 @@ already use it in another harness.
 ## What's Inside
 
 ### Skills Library
+
+**Spec-Driven Development**
+- **spec-driven-development** - Persistent SDD specs: a project constitution (mission/tech-stack/roadmap) + per-feature specs (plan/requirements/validation); adaptive greenfield interview or legacy reverse-engineering; standalone core with optional superpowers hooks
 
 **Testing**
 - **test-driven-development** - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
