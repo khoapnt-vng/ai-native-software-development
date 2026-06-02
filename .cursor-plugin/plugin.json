@@ -1,16 +1,19 @@
 {
-  "name": "superpowers",
-  "displayName": "Superpowers",
-  "description": "Core skills library: TDD, debugging, collaboration patterns, and proven techniques",
-  "version": "5.1.0",
+  "name": "spec-driven-powers",
+  "displayName": "Spec-Driven Powers",
+  "description": "Spec-Driven Development skills plus the superpowers core it forks: persistent specs (constitution + feature specs) that anchor intent, with TDD, debugging, and collaboration workflows.",
+  "version": "0.1.0",
   "author": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com"
+    "name": "khoapnt-vng",
+    "email": "khoapnt@vng.com.vn"
   },
-  "homepage": "https://github.com/obra/superpowers",
-  "repository": "https://github.com/obra/superpowers",
+  "homepage": "https://github.com/khoapnt-vng/ai-native-software-development",
+  "repository": "https://github.com/khoapnt-vng/ai-native-software-development",
   "license": "MIT",
   "keywords": [
+    "spec-driven-development",
+    "sdd",
+    "specs",
     "skills",
     "tdd",
     "debugging",
