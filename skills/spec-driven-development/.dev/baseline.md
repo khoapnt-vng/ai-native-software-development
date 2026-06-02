@@ -49,3 +49,22 @@ Representative facts about the output:
 Gaps are real and non-empty. A capable agent defaults to a good *plan* but skips
 the SDD structure (constitution, separated trio, surfaced assumptions, persisted
 `docs/specs/`, `verify:`-checked validation). The skill targets these directly.
+
+## GREEN result (same scenario, same model, WITH the skill)
+
+Fresh subagent (sonnet) told to read+follow SKILL.md, same URL-shortener
+scenario, greenfield, operating autonomously. Result vs. each gap:
+
+| GREEN criterion | Verdict | Evidence |
+|-----------------|---------|----------|
+| Constitution recognized/written first | PASS | Routed "greenfield, no constitution → write constitution first"; produced mission/tech-stack/roadmap. |
+| Assumptions surfaced, not silently picked | PASS | Interview-Q+proposed-answers table; tech stack marked "proposals to confirm"; Assumptions section + 5 Open questions marked `[PROPOSED]`. |
+| Trio separated | PASS | `plan.md` / `requirements.md` / `validation.md` as distinct files. |
+| `verify:` per validation item | PASS | 11 acceptance criteria + 4 edge cases, each with a concrete `verify:` (curl/pytest/HTML check). |
+| Scope bounded + explicit out-of-scope | PASS | "Out of scope (YAGNI)" list + decisions table with alternatives rejected. |
+| Persisted to `docs/specs/` | PASS | Constitution at `docs/specs/`, feature at `docs/specs/link-expiration/`. |
+
+All six GREEN criteria pass. Independent spec+quality review (separate pass):
+SPEC-COMPLIANT / APPROVED, one non-blocking minor note (DOT routing block reads
+slower than prose; backstopped by adjacent prose, kept for house-style
+consistency). The skill demonstrably changes behavior in the intended direction.
