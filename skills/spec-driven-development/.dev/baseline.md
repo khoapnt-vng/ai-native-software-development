@@ -68,3 +68,19 @@ All six GREEN criteria pass. Independent spec+quality review (separate pass):
 SPEC-COMPLIANT / APPROVED, one non-blocking minor note (DOT routing block reads
 slower than prose; backstopped by adjacent prose, kept for house-style
 consistency). The skill demonstrably changes behavior in the intended direction.
+
+## REFACTOR — legacy routing check
+
+GREEN only tested the greenfield branch. A fresh subagent (sonnet) pointed at an
+existing codebase ("onboard this repo to SDD, no docs/specs/ yet") correctly:
+- Took the **legacy** branch ("Explore code → draft constitution → user
+  reviews") and quoted the routing logic to justify it (no constitution +
+  existing code).
+- Explored README/manifests/package.json/git log/skills/tests before drafting.
+- Drafted mission/tech-stack/roadmap with every inference marked
+  `[INFERRED — needs confirmation]` (per legacy-onboarding.md Step 3 — surface
+  inferences, don't silently assert).
+- Gave correct next steps (present draft → user corrects → save → continue).
+
+Both routing branches verified. REFACTOR surfaced no gaps requiring edits; the
+skill is solid as written.
