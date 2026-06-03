@@ -6,13 +6,19 @@
 <title>Superpowers + GreenNode AgentBase — Webinar</title>
 <style>
   :root{
-    --amber:#F59E0B; --amber-soft:#fbbf24; --ink:#0e1117; --panel:#171c26;
-    --panel2:#1f2632; --line:#2b3340; --text:#e8edf4; --muted:#9aa6b6;
-    --blue:#60a5fa; --green:#34d399;
+    --orange:#F97316; --orange-deep:#EA580C; --orange-soft:#FB923C;
+    --green:#16A34A; --green-deep:#15803D; --green-soft:#22C55E;
+    --bg:#FCFBF7; --bg2:#F3F6F2; --ink:#202833; --muted:#5e6772;
+    --line:#e8e3d7; --card:#ffffff;
+    --code-bg:#f5f8f4; --code-fg:#243b2f;
+    --shadow:0 1px 2px rgba(30,40,30,.05), 0 8px 24px rgba(30,50,35,.06);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{background:var(--ink);color:var(--text);overflow:hidden;
+  body{color:var(--ink);overflow:hidden;
+    background:radial-gradient(1200px 700px at 88% -8%, #fff3e6 0%, rgba(255,243,230,0) 55%),
+               radial-gradient(1100px 700px at 0% 110%, #e6f6ec 0%, rgba(230,246,236,0) 55%),
+               var(--bg);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
   code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
 
@@ -23,82 +29,85 @@
   .slide.dense{justify-content:flex-start;padding-top:5.5vh;overflow-y:auto}
   @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  .eyebrow{color:var(--amber);font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  .eyebrow{color:var(--orange-deep);font-weight:800;letter-spacing:.16em;text-transform:uppercase;
     font-size:clamp(11px,1.4vw,15px);margin-bottom:14px}
-  h1{font-size:clamp(34px,6vw,74px);line-height:1.04;letter-spacing:-1.5px}
-  h2{font-size:clamp(24px,4vw,46px);line-height:1.08;letter-spacing:-.7px;margin-bottom:18px}
+  h1{font-size:clamp(34px,6vw,74px);line-height:1.04;letter-spacing:-1.5px;color:var(--ink)}
+  h1 .o{color:var(--orange)} h1 .g{color:var(--green)}
+  h2{font-size:clamp(24px,4vw,46px);line-height:1.08;letter-spacing:-.7px;margin-bottom:18px;color:var(--ink)}
   .lead{font-size:clamp(17px,2.3vw,27px);color:var(--muted);line-height:1.5;max-width:26ch}
-  .big-lead{font-size:clamp(16px,2vw,24px);color:#cdd6e2;max-width:46ch;line-height:1.45}
-  .amber{color:var(--amber)} .blue{color:var(--blue)} .green{color:var(--green)}
-  .quote{font-size:clamp(18px,2.6vw,34px);font-weight:700;letter-spacing:-.5px;margin-top:22px;color:#fff}
-  .quote span{color:var(--amber)}
+  .big-lead{font-size:clamp(16px,2vw,24px);color:#3a424d;max-width:46ch;line-height:1.45}
+  .orange{color:var(--orange-deep)} .green{color:var(--green-deep)}
+  .quote{font-size:clamp(16px,2vw,24px);font-weight:700;letter-spacing:-.4px;margin-top:18px;color:var(--ink)}
+  .quote .b{color:var(--orange-deep)} .quote .m{color:var(--green-deep)}
 
   ul{list-style:none}
-  .bullets li{font-size:clamp(15px,1.9vw,22px);line-height:1.4;padding-left:34px;position:relative;margin:14px 0;color:#dbe2ec;max-width:34ch}
-  .bullets li::before{content:"";position:absolute;left:0;top:.5em;width:13px;height:13px;border-radius:4px;background:var(--amber)}
+  .bullets li{font-size:clamp(15px,1.9vw,22px);line-height:1.4;padding-left:34px;position:relative;margin:14px 0;color:#39414c;max-width:34ch}
+  .bullets li::before{content:"";position:absolute;left:0;top:.5em;width:13px;height:13px;border-radius:4px;background:var(--orange)}
+  .bullets li b{color:var(--ink)}
 
-  /* slide 2 split */
   .split{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start;margin-top:6px}
-  .panelbox{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 26px}
-  .panelbox h3{font-size:clamp(15px,1.7vw,20px);color:#fff;margin-bottom:12px}
-  .panelbox h3 small{color:var(--muted);font-weight:600;font-size:.7em;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+  .panelbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);border-top:3px solid var(--green)}
+  .panelbox h3{font-size:clamp(15px,1.7vw,20px);color:var(--ink);margin-bottom:12px}
+  .panelbox h3 small{color:var(--green-deep);font-weight:700;font-size:.7em;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
 
-  /* columns (slide 3) */
   .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
-  .col{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 20px}
+  .col{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 20px;box-shadow:var(--shadow);border-top:3px solid var(--line)}
+  .col.spec{border-top-color:var(--orange)} .col.build{border-top-color:var(--orange-deep)} .col.deploy{border-top-color:var(--green)}
   .col .k{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-  .col.spec .k{color:var(--amber)} .col.build .k{color:var(--blue)} .col.deploy .k{color:var(--green)}
-  .col h3{font-size:clamp(15px,1.7vw,20px);margin:6px 0 4px;color:#fff}
+  .col.spec .k{color:var(--orange-deep)} .col.build .k{color:var(--orange-deep)} .col.deploy .k{color:var(--green-deep)}
+  .col h3{font-size:clamp(15px,1.7vw,20px);margin:6px 0 4px;color:var(--ink)}
   .col .sub{color:var(--muted);font-size:12px;margin-bottom:12px}
   .sk{display:flex;flex-direction:column;gap:9px}
-  .sk .row{font-size:clamp(12px,1.35vw,15px);line-height:1.32;color:#cdd6e2}
-  .sk .row b{color:#fff;font-weight:600}
+  .sk .row{font-size:clamp(12px,1.35vw,15px);line-height:1.32;color:#3c444f}
+  .sk .row b{color:var(--ink);font-weight:600}
   .sk .nm{font-family:ui-monospace,monospace;font-size:.92em}
-  .col.spec .nm{color:var(--amber-soft)} .col.build .nm{color:var(--blue)} .col.deploy .nm{color:var(--green)}
+  .col.spec .nm{color:var(--orange-deep)} .col.build .nm{color:var(--orange-deep)} .col.deploy .nm{color:var(--green-deep)}
 
-  /* timeline (slide 4) */
-  .tl{counter-reset:s;margin-top:10px;display:grid;gap:12px}
-  .tl li{counter-increment:s;position:relative;padding:12px 16px 12px 56px;background:var(--panel);
-    border:1px solid var(--line);border-radius:12px}
-  .tl li::before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;
-    background:var(--amber);color:#12151c;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px}
-  .tl .h{font-size:clamp(14px,1.7vw,19px);font-weight:700;color:#fff}
-  .tl .h .chip{font-family:ui-monospace,monospace;font-size:.72em;font-weight:600;color:var(--amber);
-    background:#2a2410;border:1px solid #4a3c12;border-radius:6px;padding:1px 7px;margin-left:8px;white-space:nowrap}
+  .tl{counter-reset:s;margin-top:10px;display:grid;gap:11px}
+  .tl li{counter-increment:s;position:relative;padding:12px 16px 12px 56px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);border-left:3px solid var(--orange)}
+  .tl li:nth-child(even){border-left-color:var(--green)}
+  .tl li::before{content:counter(s);position:absolute;left:13px;top:11px;width:30px;height:30px;
+    background:var(--orange);color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px}
+  .tl li:nth-child(even)::before{background:var(--green)}
+  .tl .h{font-size:clamp(14px,1.7vw,19px);font-weight:700;color:var(--ink)}
+  .tl .h .chip{font-family:ui-monospace,monospace;font-size:.72em;font-weight:700;color:var(--orange-deep);
+    background:#fff1e3;border:1px solid #f7d9bd;border-radius:6px;padding:1px 7px;margin-left:8px;white-space:nowrap}
+  .tl li:nth-child(even) .h .chip{color:var(--green-deep);background:#e6f6ec;border-color:#bfe6cc}
   .tl .d{font-size:clamp(12px,1.4vw,15.5px);color:var(--muted);margin-top:3px;line-height:1.4}
-  .tl .say{color:#cdd6e2;font-style:italic}
+  .tl .say{color:#3c444f;font-style:italic}
+  .tl code{background:#fff1e3;color:var(--orange-deep);padding:1px 5px;border-radius:5px;font-size:.9em}
   .footnote{margin-top:14px;color:var(--muted);font-size:clamp(12px,1.4vw,16px)}
-  .footnote b{color:var(--amber)}
+  .footnote b{color:var(--green-deep)}
 
-  /* code (slide 5) */
-  pre{background:#0a0d13;border:1px solid var(--line);border-radius:12px;padding:18px 20px;
-    font-size:clamp(12px,1.4vw,16px);line-height:1.7;overflow:auto;color:#dbe7ff;max-width:64ch}
-  pre .c{color:#6b7787} pre .a{color:var(--amber-soft)}
-  .cta{font-size:clamp(17px,2.3vw,28px);margin-top:22px;color:#fff;font-weight:700}
-  .cta span{color:var(--amber)}
+  pre{background:var(--code-bg);border:1px solid #dfe7df;border-radius:12px;padding:18px 20px;
+    font-size:clamp(12px,1.4vw,16px);line-height:1.7;overflow:auto;color:var(--code-fg);max-width:64ch}
+  pre .c{color:#8a9a8c} pre .a{color:var(--orange-deep);font-weight:600}
+  .cta{font-size:clamp(17px,2.3vw,28px);margin-top:22px;color:var(--ink);font-weight:700}
+  .cta span{color:var(--orange-deep)}
   .repo{color:var(--muted);font-size:clamp(13px,1.5vw,17px);margin-top:12px}
-  .repo a{color:var(--blue);text-decoration:none}
+  .repo a{color:var(--green-deep);text-decoration:none;font-weight:600}
 
   .title-badges{margin-top:24px}
-  .badge{display:inline-block;border:1px solid var(--line);background:var(--panel);border-radius:999px;
-    padding:6px 14px;margin:5px 7px 5px 0;font-size:clamp(11px,1.4vw,15px);color:#cdd6e2}
-  .badge b{color:var(--amber)}
+  .badge{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:999px;
+    padding:6px 14px;margin:5px 7px 5px 0;font-size:clamp(11px,1.4vw,15px);color:#3c444f;box-shadow:var(--shadow)}
+  .badge b{color:var(--orange-deep)}
   .agenda{margin-top:22px;color:var(--muted);font-size:clamp(13px,1.6vw,18px)}
-  .agenda b{color:#cdd6e2}
+  .agenda b{color:var(--ink)}
   .speaker{position:absolute;bottom:7vh;left:8vw;color:var(--muted);font-size:14px}
 
-  .bar{position:fixed;top:0;left:0;height:4px;background:var(--amber);transition:width .35s ease;z-index:30}
+  .bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--green),var(--orange));transition:width .35s ease;z-index:30}
   .counter{position:fixed;bottom:18px;right:24px;color:var(--muted);font-size:14px;font-weight:600;z-index:30}
   .dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:30}
-  .dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0}
-  .dot.on{background:var(--amber);transform:scale(1.25)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#d9dbd3;border:none;cursor:pointer;padding:0}
+  .dot.on{background:var(--orange);transform:scale(1.25)}
   .nav{position:fixed;bottom:14px;right:112px;display:flex;gap:8px;z-index:30}
-  .nav button{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:9px;
-    width:38px;height:32px;font-size:17px;cursor:pointer}
-  .nav button:hover{border-color:var(--amber);color:var(--amber)}
-  .hint{position:fixed;bottom:20px;left:24px;color:#5a6575;font-size:12px;z-index:30}
+  .nav button{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:9px;
+    width:38px;height:32px;font-size:17px;cursor:pointer;box-shadow:var(--shadow)}
+  .nav button:hover{border-color:var(--orange);color:var(--orange-deep)}
+  .hint{position:fixed;bottom:20px;left:24px;color:#9aa39a;font-size:12px;z-index:30}
   .logo{position:absolute;top:5vh;right:8vw;font-weight:800;font-size:13px;color:var(--muted)}
-  .logo b{color:var(--amber)}
+  .logo b{color:var(--orange-deep)} .logo .gn{color:var(--green-deep)}
   @media(max-width:820px){.cols{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
 </style>
 </head>
@@ -108,10 +117,10 @@
 
   <!-- SLIDE 1 — TITLE -->
   <section class="slide active">
-    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <div class="logo">⚡ <b>SP</b> + <span class="gn">GreenNode</span></div>
     <p class="eyebrow">Webinar · Claude Code skills suite</p>
-    <h1>Superpowers <span class="amber">+</span><br>GreenNode AgentBase</h1>
-    <p class="lead" style="margin-top:22px">From an idea to a <span class="amber">deployed AI agent</span> — guided every step.</p>
+    <h1><span class="o">Superpowers</span> <span class="g">+</span><br><span class="g">GreenNode</span> AgentBase</h1>
+    <p class="lead" style="margin-top:22px">From an idea to a <span class="orange">deployed AI agent</span> — guided every step.</p>
     <div class="title-badges">
       <span class="badge"><b>23 skills</b> · one install</span>
       <span class="badge"><b>build · spec · deploy</b></span>
@@ -122,9 +131,9 @@
 
   <!-- SLIDE 2 — WHY + WHAT -->
   <section class="slide">
-    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <div class="logo">⚡ <b>SP</b> + <span class="gn">GreenNode</span></div>
     <p class="eyebrow">Why it exists · what it is</p>
-    <h2>Great AI demos. <span class="amber">Painful delivery.</span></h2>
+    <h2>Great AI demos. <span class="orange">Painful delivery.</span></h2>
     <div class="split">
       <div>
         <ul class="bullets">
@@ -135,15 +144,15 @@
       </div>
       <div class="panelbox">
         <h3><small>So what is it?</small>A Claude Code skills suite</h3>
-        <p class="big-lead"><b class="amber">23 skills</b> across three families — <b class="amber">Spec · Build · Deploy</b> — that trigger automatically from plain language. You stay the architect &amp; reviewer; the agent does the heavy lifting.</p>
-        <p class="quote" style="font-size:clamp(16px,2vw,24px);margin-top:18px">The spec is the <span>brain</span>. The agent is the <span>muscle</span>.</p>
+        <p class="big-lead"><b class="orange">23 skills</b> across three families — <b class="orange">Spec</b> · <b class="orange">Build</b> · <b class="green">Deploy</b> — that trigger automatically from plain language. You stay the architect &amp; reviewer; the agent does the heavy lifting.</p>
+        <p class="quote" style="margin-top:18px">The spec is the <span class="b">brain</span>. The agent is the <span class="m">muscle</span>.</p>
       </div>
     </div>
   </section>
 
   <!-- SLIDE 3 — THE SKILLS (DETAILED) -->
   <section class="slide dense">
-    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <div class="logo">⚡ <b>SP</b> + <span class="gn">GreenNode</span></div>
     <p class="eyebrow">What's inside · 23 skills, three families</p>
     <h2>The skills</h2>
     <div class="cols">
@@ -189,7 +198,7 @@
 
   <!-- SLIDE 4 — THE FLOW (DETAILED) -->
   <section class="slide dense">
-    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <div class="logo">⚡ <b>SP</b> + <span class="gn">GreenNode</span></div>
     <p class="eyebrow">How to use it · idea → running agent</p>
     <h2>The flow</h2>
     <ul class="tl">
@@ -223,7 +232,7 @@
 
   <!-- SLIDE 5 — GET STARTED -->
   <section class="slide">
-    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <div class="logo">⚡ <b>SP</b> + <span class="gn">GreenNode</span></div>
     <p class="eyebrow">Get started in 2 minutes</p>
     <h2>Install &amp; go</h2>
     <pre><span class="c"># Add the suite to Claude Code</span>
