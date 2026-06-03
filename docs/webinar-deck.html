@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Superpowers + GreenNode AgentBase — Webinar</title>
+<style>
+  :root{
+    --amber:#F59E0B; --amber-soft:#fbbf24; --ink:#0e1117; --panel:#171c26;
+    --panel2:#1f2632; --line:#2b3340; --text:#e8edf4; --muted:#9aa6b6;
+    --blue:#60a5fa; --green:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--ink);color:var(--text);overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+
+  /* deck */
+  .deck{height:100vh;width:100vw;position:relative}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:7vh 9vw;animation:fade .45s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .eyebrow{color:var(--amber);font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+    font-size:clamp(11px,1.4vw,15px);margin-bottom:18px}
+  h1{font-size:clamp(34px,6.2vw,76px);line-height:1.04;letter-spacing:-1.5px}
+  h2{font-size:clamp(26px,4.4vw,52px);line-height:1.08;letter-spacing:-.8px;margin-bottom:26px}
+  .lead{font-size:clamp(17px,2.3vw,27px);color:var(--muted);line-height:1.5;max-width:24ch}
+  .big-lead{font-size:clamp(18px,2.4vw,30px);color:#cdd6e2;max-width:30ch;line-height:1.45}
+  .amber{color:var(--amber)} .blue{color:var(--blue)} .green{color:var(--green)}
+  .quote{font-size:clamp(20px,3vw,38px);font-weight:700;letter-spacing:-.5px;margin-top:34px;color:#fff}
+  .quote span{color:var(--amber)}
+
+  ul{list-style:none} li{margin:0}
+  .bullets li{font-size:clamp(16px,2.1vw,25px);line-height:1.4;padding-left:38px;position:relative;margin:18px 0;color:#dbe2ec;max-width:30ch}
+  .bullets li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:14px;border-radius:4px;background:var(--amber)}
+
+  /* three columns */
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+  .col .k{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .col.spec .k{color:var(--amber)} .col.build .k{color:var(--blue)} .col.deploy .k{color:var(--green)}
+  .col h3{font-size:clamp(17px,1.9vw,23px);margin:8px 0 8px;color:#fff}
+  .col p{color:var(--muted);font-size:clamp(13px,1.5vw,16.5px);line-height:1.5}
+  .col .count{margin-top:14px;font-size:12.5px;color:var(--muted)}
+
+  /* flow */
+  .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 26px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;text-align:center;min-width:120px}
+  .step .n{color:var(--amber);font-weight:800;font-size:12px;letter-spacing:.1em}
+  .step .t{font-size:clamp(14px,1.6vw,18px);font-weight:600;margin-top:4px}
+  .arrow{color:var(--amber);font-size:22px;font-weight:800}
+  .example{background:var(--panel2);border-left:4px solid var(--amber);border-radius:10px;padding:18px 22px;max-width:60ch}
+  .example .you{color:var(--amber);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .example p{font-size:clamp(16px,2vw,23px);color:#fff;margin-top:6px;font-style:italic}
+
+  /* code */
+  pre{background:#0a0d13;border:1px solid var(--line);border-radius:12px;padding:20px 22px;
+    font-size:clamp(12px,1.45vw,16px);line-height:1.7;overflow:auto;color:#dbe7ff;max-width:62ch}
+  pre .c{color:#6b7787} pre .a{color:var(--amber-soft)}
+  .cta{font-size:clamp(18px,2.4vw,30px);margin-top:26px;color:#fff;font-weight:700}
+  .cta span{color:var(--amber)}
+  .repo{color:var(--muted);font-size:clamp(13px,1.6vw,18px);margin-top:14px}
+  .repo a{color:var(--blue);text-decoration:none}
+
+  /* title slide */
+  .title-badges{margin-top:30px}
+  .badge{display:inline-block;border:1px solid var(--line);background:var(--panel);border-radius:999px;
+    padding:7px 16px;margin:5px 8px 5px 0;font-size:clamp(12px,1.5vw,16px);color:#cdd6e2}
+  .badge b{color:var(--amber)}
+  .speaker{position:absolute;bottom:8vh;left:9vw;color:var(--muted);font-size:14px}
+
+  /* chrome */
+  .bar{position:fixed;top:0;left:0;height:4px;background:var(--amber);transition:width .35s ease;z-index:30}
+  .counter{position:fixed;bottom:20px;right:26px;color:var(--muted);font-size:14px;font-weight:600;z-index:30}
+  .dots{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:30}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0}
+  .dot.on{background:var(--amber);transform:scale(1.25)}
+  .nav{position:fixed;bottom:16px;right:120px;display:flex;gap:8px;z-index:30}
+  .nav button{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:9px;
+    width:40px;height:34px;font-size:17px;cursor:pointer}
+  .nav button:hover{border-color:var(--amber);color:var(--amber)}
+  .hint{position:fixed;bottom:22px;left:26px;color:#5a6575;font-size:12.5px;z-index:30}
+  .logo{position:absolute;top:6vh;right:9vw;font-weight:800;font-size:14px;color:var(--muted)}
+  .logo b{color:var(--amber)}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}.flow{flex-direction:column;align-items:flex-start}.arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — TITLE -->
+  <section class="slide active">
+    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <p class="eyebrow">Webinar · Claude Code skills suite</p>
+    <h1>Superpowers <span class="amber">+</span><br>GreenNode AgentBase</h1>
+    <p class="lead" style="margin-top:26px">From an idea to a <span class="amber">deployed AI agent</span> — guided every step.</p>
+    <div class="title-badges">
+      <span class="badge"><b>Build</b> · plan, test, review</span>
+      <span class="badge"><b>Spec</b> · intent that lasts</span>
+      <span class="badge"><b>Deploy</b> · ship to GreenNode</span>
+    </div>
+    <div class="speaker">23 skills · one install · works in plain language</div>
+  </section>
+
+  <!-- SLIDE 2 — WHY -->
+  <section class="slide">
+    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <p class="eyebrow">The problem</p>
+    <h2>Great AI demos. <span class="amber">Painful delivery.</span></h2>
+    <ul class="bullets">
+      <li>AI agents <b>drift</b> — the plan lives in a long chat and gets lost between sessions.</li>
+      <li>Building is one battle; <b>deploying</b> to real infrastructure is a whole other one.</li>
+      <li>No <b>single source of truth</b> for what you're actually building.</li>
+    </ul>
+    <p class="quote">The spec is the <span>brain</span>. The agent is the <span>muscle</span>.</p>
+  </section>
+
+  <!-- SLIDE 3 — WHAT -->
+  <section class="slide">
+    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <p class="eyebrow">What it is</p>
+    <h2>One suite, three superpowers</h2>
+    <div class="cols">
+      <div class="col spec">
+        <div class="k">① Spec</div>
+        <h3>Write intent down</h3>
+        <p>Turns your idea into living docs — mission, requirements, and "done" checks — so nothing gets lost.</p>
+        <div class="count">spec-driven-development</div>
+      </div>
+      <div class="col build">
+        <div class="k">② Build</div>
+        <h3>Engineer it well</h3>
+        <p>Plans the work, writes tests first, reviews its own output. Disciplined, not vibes.</p>
+        <div class="count">superpowers · 14 skills</div>
+      </div>
+      <div class="col deploy">
+        <div class="k">③ Deploy</div>
+        <h3>Ship to GreenNode</h3>
+        <p>Scaffolds the agent, wires memory &amp; keys, deploys, and shows the logs.</p>
+        <div class="count">GreenNode AgentBase · 8 skills</div>
+      </div>
+    </div>
+    <p class="big-lead" style="margin-top:24px"><b class="amber">23 skills</b> that trigger automatically — you describe what you want, it does the work.</p>
+  </section>
+
+  <!-- SLIDE 4 — HOW -->
+  <section class="slide">
+    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <p class="eyebrow">How to use it</p>
+    <h2>Describe it. Ship it.</h2>
+    <div class="flow">
+      <div class="step"><div class="n">SPEC</div><div class="t">Spec</div></div>
+      <span class="arrow">→</span>
+      <div class="step"><div class="n">DESIGN</div><div class="t">Plan</div></div>
+      <span class="arrow">→</span>
+      <div class="step"><div class="n">BUILD</div><div class="t">Build &amp; test</div></div>
+      <span class="arrow">→</span>
+      <div class="step"><div class="n">DEPLOY</div><div class="t">Deploy</div></div>
+      <span class="arrow">→</span>
+      <div class="step"><div class="n">RUN</div><div class="t">Monitor</div></div>
+    </div>
+    <div class="example">
+      <div class="you">You say</div>
+      <p>"Build a customer-support agent and deploy it to GreenNode."</p>
+    </div>
+    <p class="big-lead" style="margin-top:22px">It specs the work, plans it, builds it test-first, scaffolds &amp; deploys to GreenNode, then shows you the logs. <span class="amber">No commands to memorize.</span></p>
+  </section>
+
+  <!-- SLIDE 5 — GET STARTED -->
+  <section class="slide">
+    <div class="logo">⚡ <b>SP</b> + GreenNode</div>
+    <p class="eyebrow">Get started in 2 minutes</p>
+    <h2>Install &amp; go</h2>
+    <pre><span class="c"># Add the suite to Claude Code</span>
+claude plugin marketplace add <span class="a">khoapnt-vng/superpowers-plus-greennode-agentbase</span>
+claude plugin install <span class="a">superpowers-plus-greennode-agentbase@superpowers-plus-greennode-agentbase-dev</span>
+
+<span class="c"># …or try it for one session, no install</span>
+claude --plugin-dir <span class="a">/path/to/superpowers-plus-greennode-agentbase</span></pre>
+    <p class="cta">Then just say: <span>"Let's build and deploy an agent."</span></p>
+    <p class="repo">Repo &amp; docs → <a href="https://github.com/khoapnt-vng/superpowers-plus-greennode-agentbase">github.com/khoapnt-vng/superpowers-plus-greennode-agentbase</a></p>
+    <div class="speaker">Thank you · questions welcome</div>
+  </section>
+
+</div>
+
+<!-- chrome -->
+<div class="nav"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button></div>
+<div class="counter" id="counter">1 / 5</div>
+<div class="dots" id="dots"></div>
+<div class="hint">← → arrows · or click</div>
+
+<script>
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, n=slides.length;
+  var bar=document.getElementById('bar'), counter=document.getElementById('counter'),
+      dotsWrap=document.getElementById('dots');
+  slides.forEach(function(_,k){
+    var d=document.createElement('button');d.className='dot'+(k===0?' on':'');
+    d.onclick=function(){go(k)};dotsWrap.appendChild(d);
+  });
+  var dots=[].slice.call(document.querySelectorAll('.dot'));
+  function go(k){
+    i=Math.max(0,Math.min(n-1,k));
+    slides.forEach(function(s,x){s.classList.toggle('active',x===i)});
+    dots.forEach(function(d,x){d.classList.toggle('on',x===i)});
+    counter.textContent=(i+1)+' / '+n;
+    bar.style.width=((i+1)/n*100)+'%';
+  }
+  function next(){go(i+1)} function prev(){go(i-1)}
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(n-1)}
+  });
+  // click right/left half to navigate (ignore clicks on links/buttons)
+  document.getElementById('deck').addEventListener('click',function(e){
+    if(e.target.closest('a,button,pre'))return;
+    (e.clientX>window.innerWidth/2?next:prev)();
+  });
+  go(0);
+</script>
+</body>
+</html>

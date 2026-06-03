@@ -1,6 +1,6 @@
 # Credits
 
-`superpowers-plus-agentbase` bundles three skill families. Full credit to their
+`superpowers-plus-greennode-agentbase` bundles three skill families. Full credit to their
 authors:
 
 ## superpowers (core skills library)

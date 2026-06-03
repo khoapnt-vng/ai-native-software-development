@@ -1,4 +1,4 @@
-# superpowers-plus-agentbase
+# superpowers-plus-greennode-agentbase
 
 **Build, spec, and deploy AI agents — one suite.** This Claude Code plugin
 combines three skill families so you can take an AI agent from idea to
@@ -12,18 +12,19 @@ Forked from [obra/superpowers](https://github.com/obra/superpowers) (MIT,
 © Jesse Vincent); the AgentBase skills are © GreenNode, bundled unmodified. See
 [`CREDITS.md`](CREDITS.md) and [`LICENSE`](LICENSE).
 
-Skills are invoked as `/superpowers-plus-agentbase:<skill-name>` (e.g.
-`/superpowers-plus-agentbase:agentbase-wizard`) or simply by describing your task
+Skills are invoked as `/superpowers-plus-greennode-agentbase:<skill-name>` (e.g.
+`/superpowers-plus-greennode-agentbase:agentbase-wizard`) or simply by describing your task
 — the skills auto-trigger from natural language.
 
-> 📖 **Prefer a visual tour?** Open [`docs/index.html`](docs/index.html) in a
-> browser for an illustrated introduction.
+> 📖 **Prefer a visual tour?** Open [`docs/superpowers_plus_agent_base.html`](docs/superpowers_plus_agent_base.html) in a
+> browser for an illustrated introduction — or the 5-slide
+> [webinar deck](docs/webinar-deck.html) for a quick overview.
 
 ---
 
 ## What is it?
 
-`superpowers-plus-agentbase` is a **skills package** for AI coding agents (Claude
+`superpowers-plus-greennode-agentbase` is a **skills package** for AI coding agents (Claude
 Code, and other harnesses via the bundled manifests). Skills are reusable
 instruction sets the agent loads on demand. Install once and your agent gains 23
 skills that cover the **entire lifecycle of building an AI agent**:
@@ -76,16 +77,16 @@ Loads the plugin only for the current session. Great for testing; no conflict
 with any plugin you already have.
 
 ```bash
-git clone https://github.com/khoapnt-vng/ai-native-software-development.git
+git clone https://github.com/khoapnt-vng/superpowers-plus-greennode-agentbase.git
 cd <your-project-folder>
-claude --plugin-dir /absolute/path/to/ai-native-software-development
+claude --plugin-dir /absolute/path/to/superpowers-plus-greennode-agentbase
 ```
 
 ### Claude Code — install permanently
 
 ```bash
-claude plugin marketplace add khoapnt-vng/ai-native-software-development
-claude plugin install superpowers-plus-agentbase@superpowers-plus-agentbase-dev
+claude plugin marketplace add khoapnt-vng/superpowers-plus-greennode-agentbase
+claude plugin install superpowers-plus-greennode-agentbase@superpowers-plus-greennode-agentbase-dev
 # restart Claude Code
 ```
 
@@ -95,7 +96,7 @@ claude plugin install superpowers-plus-agentbase@superpowers-plus-agentbase-dev
 > ```bash
 > claude plugin disable superpowers
 > ```
-> Undo anytime: `claude plugin uninstall superpowers-plus-agentbase` then
+> Undo anytime: `claude plugin uninstall superpowers-plus-greennode-agentbase` then
 > `claude plugin enable superpowers`.
 
 ### Other harnesses
@@ -103,12 +104,12 @@ claude plugin install superpowers-plus-agentbase@superpowers-plus-agentbase-dev
 The repo ships manifests for Codex (`.codex-plugin/`), Cursor (`.cursor-plugin/`),
 Gemini (`gemini-extension.json`), and OpenCode (`.opencode/`). Point each tool's
 plugin/extension installer at this repo
-(`https://github.com/khoapnt-vng/ai-native-software-development`). Install per
+(`https://github.com/khoapnt-vng/superpowers-plus-greennode-agentbase`). Install per
 harness if you use more than one.
 
 ### Verify it loaded
 
-In a session, type `/` and look for `superpowers-plus-agentbase:…` entries, or
+In a session, type `/` and look for `superpowers-plus-greennode-agentbase:…` entries, or
 just say *"set up a spec for a new agent"* and watch a skill trigger.
 
 ---

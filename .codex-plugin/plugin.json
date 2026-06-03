@@ -1,5 +1,5 @@
 {
-  "name": "superpowers-plus-agentbase",
+  "name": "superpowers-plus-greennode-agentbase",
   "version": "0.2.0",
   "description": "Full agent-development suite: superpowers (planning, TDD, debugging, review) + spec-driven-development + GreenNode AgentBase skills to build and deploy AI agents.",
   "author": {
@@ -7,8 +7,8 @@
     "email": "khoapnt@vng.com.vn",
     "url": "https://github.com/khoapnt-vng"
   },
-  "homepage": "https://github.com/khoapnt-vng/ai-native-software-development",
-  "repository": "https://github.com/khoapnt-vng/ai-native-software-development",
+  "homepage": "https://github.com/khoapnt-vng/superpowers-plus-greennode-agentbase",
+  "repository": "https://github.com/khoapnt-vng/superpowers-plus-greennode-agentbase",
   "license": "MIT",
   "keywords": [
     "spec-driven-development",
@@ -26,7 +26,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Superpowers + AgentBase",
+    "displayName": "Superpowers + GreenNode AgentBase",
     "shortDescription": "Build, spec, and deploy AI agents: superpowers + spec-driven-development + GreenNode AgentBase",
     "longDescription": "An end-to-end agent-development suite: spec the work with spec-driven-development, build it with the superpowers core (brainstorming, planning, TDD, debugging, review), then deploy and operate it on GreenNode AgentBase (wizard, deploy, identity, llm, memory, monitor, teardown).",
     "developerName": "khoapnt-vng",
@@ -40,7 +40,7 @@
       "I've got an idea for an AI agent I'd like to build and deploy.",
       "Let's spec, build, and ship an agent to GreenNode."
     ],
-    "websiteURL": "https://github.com/khoapnt-vng/ai-native-software-development",
+    "websiteURL": "https://github.com/khoapnt-vng/superpowers-plus-greennode-agentbase",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
     "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
     "brandColor": "#F59E0B",
