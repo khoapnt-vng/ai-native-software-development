@@ -1,15 +1,29 @@
-# spec-driven-powers
+# superpowers-plus-agentbase
 
-**Spec-Driven Development for AI coding agents** — persistent specs that anchor
-intent across sessions, so you can make large changes without the drift of long
-prompt dialogues. *The spec is the brain; the agent is the muscle.*
+**Build, spec, and deploy AI agents — one suite.** This plugin combines three
+skill families so you can take an agent from idea to production on GreenNode:
 
-This plugin is a fork of [obra/superpowers](https://github.com/obra/superpowers)
-(MIT, © Jesse Vincent). It keeps the full superpowers core skills library and
-adds one skill: **`spec-driven-development`**. See `LICENSE` for the upstream
-license; original credit goes to the superpowers authors.
+- **superpowers** — brainstorming, planning, TDD, debugging, code review (the build muscle)
+- **spec-driven-development** — persistent specs (constitution + feature specs) that anchor intent
+- **GreenNode AgentBase** — scaffold, deploy, and operate agents on GreenNode infrastructure
 
-Activate the SDD skill with `/spec-driven-powers:spec-driven-development`.
+Forked from [obra/superpowers](https://github.com/obra/superpowers) (MIT,
+© Jesse Vincent); the AgentBase skills are © GreenNode, bundled unmodified. See
+[`CREDITS.md`](CREDITS.md) and [`LICENSE`](LICENSE).
+
+Skills are invoked as `/superpowers-plus-agentbase:<skill-name>` (e.g.
+`/superpowers-plus-agentbase:agentbase-wizard`) or simply by describing your task
+— the skills auto-trigger from natural language.
+
+## Build → Spec → Deploy (end to end)
+
+1. **Spec it** — `/superpowers-plus-agentbase:spec-driven-development` writes a
+   constitution + feature spec into `docs/specs/`.
+2. **Build it** — superpowers carries the implementation: `brainstorming` →
+   `writing-plans` → test-driven-development → `executing-plans`.
+3. **Ship it** — `agentbase-wizard` scaffolds the agent, `agentbase-deploy`
+   pushes it to GreenNode AgentBase, `agentbase-monitor` watches it, and
+   `agentbase-teardown` cleans up.
 
 ## Quickstart
 
@@ -184,6 +198,16 @@ already use it in another harness.
 
 **Spec-Driven Development**
 - **spec-driven-development** - Persistent SDD specs: a project constitution (mission/tech-stack/roadmap) + per-feature specs (plan/requirements/validation); adaptive greenfield interview or legacy reverse-engineering; standalone core with optional superpowers hooks
+
+**GreenNode AgentBase (build & deploy on GreenNode)**
+- **agentbase** - Platform reference & getting-started guide
+- **agentbase-wizard** - Guided agent build from scaffold to deploy (LangChain/LangGraph templates)
+- **agentbase-deploy** - Deploy, manage runtimes, and container registry (vCR)
+- **agentbase-identity** - Agent identities and outbound auth providers
+- **agentbase-llm** - Platform LLM model access and API keys
+- **agentbase-memory** - Conversation history and long-term memory
+- **agentbase-monitor** - Logs, metrics, and status for deployed agents
+- **agentbase-teardown** - Remove all platform resources for a project
 
 **Testing**
 - **test-driven-development** - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
