@@ -1,8 +1,8 @@
 {
-  "name": "spec-driven-powers",
-  "displayName": "Spec-Driven Powers",
-  "description": "Spec-Driven Development skills plus the superpowers core it forks: persistent specs (constitution + feature specs) that anchor intent, with TDD, debugging, and collaboration workflows.",
-  "version": "0.1.0",
+  "name": "superpowers-plus-agentbase",
+  "displayName": "Superpowers + AgentBase",
+  "description": "Build, spec, and deploy AI agents: superpowers core + spec-driven-development + GreenNode AgentBase skills.",
+  "version": "0.2.0",
   "author": {
     "name": "khoapnt-vng",
     "email": "khoapnt@vng.com.vn"
@@ -13,12 +13,13 @@
   "keywords": [
     "spec-driven-development",
     "sdd",
-    "specs",
+    "agentbase",
+    "greennode",
+    "ai-agents",
+    "deploy",
     "skills",
     "tdd",
     "debugging",
-    "collaboration",
-    "best-practices",
     "workflows"
   ],
   "skills": "./skills/",

@@ -1,7 +1,7 @@
 {
-  "name": "spec-driven-powers",
-  "version": "0.1.0",
-  "description": "Spec-Driven Development skills plus the superpowers core library it forks: persistent specs (constitution + feature specs) that anchor intent, with planning, TDD, debugging, and collaboration workflows.",
+  "name": "superpowers-plus-agentbase",
+  "version": "0.2.0",
+  "description": "Full agent-development suite: superpowers (planning, TDD, debugging, review) + spec-driven-development + GreenNode AgentBase skills to build and deploy AI agents.",
   "author": {
     "name": "khoapnt-vng",
     "email": "khoapnt@vng.com.vn",
@@ -13,9 +13,10 @@
   "keywords": [
     "spec-driven-development",
     "sdd",
-    "specs",
-    "brainstorming",
-    "subagent-driven-development",
+    "agentbase",
+    "greennode",
+    "ai-agents",
+    "deploy",
     "skills",
     "planning",
     "tdd",
@@ -25,9 +26,9 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Spec-Driven Powers",
-    "shortDescription": "Spec-Driven Development specs plus planning, TDD, debugging, and delivery workflows",
-    "longDescription": "Spec-Driven Powers adds persistent SDD specs (a project constitution and per-feature plan/requirements/validation) on top of the superpowers core: brainstorming, implementation planning, test-driven development, systematic debugging, parallel execution, code review, and finish-the-branch workflows.",
+    "displayName": "Superpowers + AgentBase",
+    "shortDescription": "Build, spec, and deploy AI agents: superpowers + spec-driven-development + GreenNode AgentBase",
+    "longDescription": "An end-to-end agent-development suite: spec the work with spec-driven-development, build it with the superpowers core (brainstorming, planning, TDD, debugging, review), then deploy and operate it on GreenNode AgentBase (wizard, deploy, identity, llm, memory, monitor, teardown).",
     "developerName": "khoapnt-vng",
     "category": "Coding",
     "capabilities": [
@@ -36,8 +37,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "I've got an idea for something I'd like to build.",
-      "Let's add a feature to this project."
+      "I've got an idea for an AI agent I'd like to build and deploy.",
+      "Let's spec, build, and ship an agent to GreenNode."
     ],
     "websiteURL": "https://github.com/khoapnt-vng/ai-native-software-development",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",

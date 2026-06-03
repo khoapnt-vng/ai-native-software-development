@@ -1,7 +1,7 @@
 {
-  "name": "spec-driven-powers",
-  "description": "Spec-Driven Development skills for Claude Code: persistent specs (constitution + feature specs) that anchor intent, plus the full superpowers core library it builds on.",
-  "version": "0.1.0",
+  "name": "superpowers-plus-agentbase",
+  "description": "Full agent-development suite for Claude Code: superpowers (planning, TDD, debugging, review) + spec-driven-development (persistent specs) + GreenNode AgentBase skills to build and deploy AI agents.",
+  "version": "0.2.0",
   "author": {
     "name": "khoapnt-vng",
     "email": "khoapnt@vng.com.vn"
@@ -13,7 +13,10 @@
     "skills",
     "spec-driven-development",
     "sdd",
-    "specs",
+    "agentbase",
+    "greennode",
+    "ai-agents",
+    "deploy",
     "planning",
     "tdd",
     "best-practices",

@@ -1,6 +1,6 @@
 {
-  "name": "spec-driven-powers",
-  "description": "Spec-Driven Development skills plus the superpowers core it forks: persistent specs (constitution + feature specs) that anchor intent, with TDD, debugging, and collaboration workflows.",
-  "version": "0.1.0",
+  "name": "superpowers-plus-agentbase",
+  "description": "Build, spec, and deploy AI agents: superpowers core + spec-driven-development + GreenNode AgentBase skills.",
+  "version": "0.2.0",
   "contextFileName": "GEMINI.md"
 }
