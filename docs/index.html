@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>superpowers-plus-agentbase — Build, Spec & Deploy AI Agents</title>
+<style>
+  :root{
+    --amber:#F59E0B; --amber-dark:#B45309; --ink:#1a1d23; --muted:#5b6470;
+    --bg:#fffdf8; --card:#ffffff; --line:#ece6da; --code-bg:#1f2430; --code-fg:#e7ecf3;
+    --green:#0e9f6e; --blue:#2563eb;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.65;font-size:16px}
+  a{color:var(--amber-dark);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;background:#f3eede;
+    padding:.12em .4em;border-radius:5px;font-size:.88em;color:#7c4a02}
+  pre{background:var(--code-bg);color:var(--code-fg);padding:16px 18px;border-radius:10px;
+    overflow:auto;font-size:13.5px;line-height:1.55}
+  pre code{background:none;color:inherit;padding:0}
+  /* layout */
+  .wrap{display:flex;max-width:1180px;margin:0 auto;gap:40px;padding:0 24px}
+  nav.side{position:sticky;top:0;align-self:flex-start;height:100vh;padding:34px 0;width:210px;flex:0 0 210px}
+  nav.side .brand{font-weight:800;font-size:15px;letter-spacing:-.2px;margin-bottom:22px;line-height:1.3}
+  nav.side .brand span{color:var(--amber-dark)}
+  nav.side a{display:block;color:var(--muted);padding:7px 0;font-size:14px;border-left:2px solid transparent;padding-left:12px;margin-left:-2px}
+  nav.side a:hover{color:var(--ink);text-decoration:none}
+  nav.side a.active{color:var(--amber-dark);border-left-color:var(--amber);font-weight:600}
+  main{flex:1;min-width:0;padding-bottom:120px}
+  section{padding:64px 0 8px;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  .eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:700;color:var(--amber-dark);margin:0 0 10px}
+  h1{font-size:42px;line-height:1.1;margin:.1em 0 .35em;letter-spacing:-1px}
+  h2{font-size:27px;margin:.2em 0 .5em;letter-spacing:-.4px}
+  h3{font-size:18px;margin:1.4em 0 .3em}
+  p{color:#2b313a}
+  .lead{font-size:19px;color:#3a414b}
+  .pill{display:inline-block;background:#fff5e0;color:var(--amber-dark);border:1px solid #f3dca6;
+    border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:600;margin:2px 4px 2px 0}
+  /* hero */
+  .hero{background:linear-gradient(135deg,#fff8ec,#fffdf8);border:1px solid var(--line);
+    border-radius:18px;padding:40px 36px;margin-top:30px}
+  .families{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0}
+  .fam{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .fam h4{margin:0 0 6px;font-size:16px}
+  .fam .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  .fam.build .tag{color:var(--blue)} .fam.spec .tag{color:var(--amber-dark)} .fam.deploy .tag{color:var(--green)}
+  .fam p{font-size:14px;color:var(--muted);margin:.3em 0 0}
+  /* steps */
+  ol.steps{counter-reset:step;list-style:none;padding:0;margin:18px 0}
+  ol.steps>li{position:relative;padding:0 0 22px 56px;border-left:2px solid var(--line);margin-left:18px}
+  ol.steps>li:last-child{border-left-color:transparent}
+  ol.steps>li::before{counter-increment:step;content:counter(step);position:absolute;left:-19px;top:-2px;
+    width:36px;height:36px;background:var(--amber);color:#fff;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:15px;box-shadow:0 2px 0 var(--amber-dark)}
+  ol.steps h3{margin:.1em 0 .25em}
+  .skill{display:inline-block;background:#eef6ff;color:#1d4ed8;border:1px solid #cfe0fb;border-radius:7px;
+    padding:1px 8px;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace}
+  .say{color:var(--muted);font-style:italic}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em}
+  .note{background:#fff5e0;border:1px solid #f3dca6;border-radius:10px;padding:14px 16px;font-size:14.5px;margin:16px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  ul.clean{padding-left:20px}ul.clean li{margin:.3em 0}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 0;color:var(--muted);font-size:13.5px}
+  @media(max-width:820px){
+    nav.side{display:none} .wrap{padding:0 18px} .families{grid-template-columns:1fr} .grid2{grid-template-columns:1fr}
+    h1{font-size:33px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="side">
+    <div class="brand">⚡ superpowers<br><span>+ agentbase</span></div>
+    <a href="#what" class="active">What is it</a>
+    <a href="#objective">Objective</a>
+    <a href="#who">Who &amp; what</a>
+    <a href="#families">The 3 families</a>
+    <a href="#install">Install</a>
+    <a href="#steps">Step by step</a>
+    <a href="#faq">Tips &amp; FAQ</a>
+  </nav>
+
+  <main>
+    <!-- HERO / WHAT -->
+    <section id="what" style="border-top:none;padding-top:40px">
+      <div class="hero">
+        <p class="eyebrow">Claude Code skills package</p>
+        <h1>Build, spec &amp; deploy AI agents — one suite.</h1>
+        <p class="lead">
+          <strong>superpowers-plus-agentbase</strong> gives your coding agent 23 skills that
+          cover the whole lifecycle of an AI agent: write the spec, build it with
+          disciplined engineering, and ship it to <strong>GreenNode AgentBase</strong>.
+        </p>
+        <div>
+          <span class="pill">23 skills</span>
+          <span class="pill">spec-driven</span>
+          <span class="pill">TDD &amp; review</span>
+          <span class="pill">deploy to GreenNode</span>
+          <span class="pill">auto-triggering</span>
+        </div>
+      </div>
+
+      <h2 style="margin-top:34px">What is it?</h2>
+      <p>
+        A <strong>skills package</strong> for AI coding agents. “Skills” are reusable
+        instruction sets the agent loads on demand and triggers automatically at the right
+        moment — you mostly just describe what you want. Install once and your agent can:
+      </p>
+      <ul class="clean">
+        <li><strong>Spec</strong> the work, so intent is written down — not lost in a long chat.</li>
+        <li><strong>Build</strong> it with planning, test-driven development, and review.</li>
+        <li><strong>Deploy</strong> &amp; operate it on GreenNode AgentBase.</li>
+      </ul>
+      <p>It’s a fork of <a href="https://github.com/obra/superpowers">obra/superpowers</a> (MIT)
+        plus an original <code>spec-driven-development</code> skill and GreenNode’s AgentBase skills.</p>
+    </section>
+
+    <!-- OBJECTIVE -->
+    <section id="objective">
+      <p class="eyebrow">Why it exists</p>
+      <h2>Objective</h2>
+      <p>
+        AI agents <strong>drift</strong>. Across a long session the “why” lives only in chat
+        history — lost on clear, lost when a new session starts, eroded as context grows. Agents
+        jump to code before the problem is understood, invent tech stacks silently, and produce
+        work no one agreed to review. And once something is built, getting it <em>deployed</em>
+        is a separate scramble.
+      </p>
+      <div class="grid2">
+        <div class="note" style="background:#fff;border-color:var(--line)">
+          <strong>Spec-Driven Development</strong> keeps a persistent spec as the source of truth.
+          <br><em>The spec is the brain; the agent is the muscle.</em> You stay the architect and reviewer.
+        </div>
+        <div class="note" style="background:#fff;border-color:var(--line)">
+          <strong>GreenNode AgentBase</strong> turns “works on my machine” into a deployed,
+          monitored agent — scaffold, identity, memory, deploy, logs — in a few prompts.
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO -->
+    <section id="who">
+      <p class="eyebrow">Audience &amp; outcomes</p>
+      <h2>Who is it for, and what can you build?</h2>
+      <p><strong>For:</strong> developers, product managers, and teams who use an AI coding agent
+        and want consistent, shippable results — especially anyone deploying agents to GreenNode AgentBase.</p>
+      <h3>Build things like</h3>
+      <ul class="clean">
+        <li>A <strong>chatbot / assistant</strong> (LangChain or LangGraph) with memory.</li>
+        <li>A <strong>RAG or tool-using agent</strong> that calls external APIs (managed identity &amp; secrets).</li>
+        <li>An <strong>internal automation agent</strong> — specced, tested, and deployed to GreenNode.</li>
+        <li>Or any software project — the build + spec half works for non-agent apps too.</li>
+      </ul>
+      <h3>Do this with it</h3>
+      <p>Spec a feature → plan it into bite-sized tasks → implement it test-first → review it →
+        scaffold, deploy, and monitor it on GreenNode. All guided, all auto-triggered.</p>
+    </section>
+
+    <!-- FAMILIES -->
+    <section id="families">
+      <p class="eyebrow">What's inside</p>
+      <h2>Three skill families, 23 skills</h2>
+      <div class="families">
+        <div class="fam spec"><span class="tag">Spec</span><h4>spec-driven-development</h4>
+          <p>Persistent specs: a project constitution (mission / tech-stack / roadmap) + per-feature
+          plan / requirements / validation, with a <code>verify:</code> check on every item.</p></div>
+        <div class="fam build"><span class="tag">Build</span><h4>superpowers (14)</h4>
+          <p>brainstorming, writing-plans, subagent-driven-development, test-driven-development,
+          systematic-debugging, code review, git worktrees, and more.</p></div>
+        <div class="fam deploy"><span class="tag">Deploy</span><h4>GreenNode AgentBase (8)</h4>
+          <p>wizard, deploy, identity, llm, memory, monitor, teardown, and a platform reference.</p></div>
+      </div>
+      <table>
+        <tr><th>Skill</th><th>What it does</th></tr>
+        <tr><td><span class="skill">spec-driven-development</span></td><td>Write &amp; maintain the persistent SDD specs.</td></tr>
+        <tr><td><span class="skill">agentbase-wizard</span></td><td>Guided agent build, scaffold → deploy (LangChain/LangGraph templates).</td></tr>
+        <tr><td><span class="skill">agentbase-deploy</span></td><td>Build/push image, create/update runtime, container registry (vCR).</td></tr>
+        <tr><td><span class="skill">agentbase-identity</span></td><td>Agent identities &amp; outbound auth (OpenAI, Google, Slack…).</td></tr>
+        <tr><td><span class="skill">agentbase-llm</span></td><td>Platform LLM model access &amp; API keys.</td></tr>
+        <tr><td><span class="skill">agentbase-memory</span></td><td>Conversation history &amp; long-term memory.</td></tr>
+        <tr><td><span class="skill">agentbase-monitor</span></td><td>Logs, metrics, and status for deployed agents.</td></tr>
+        <tr><td><span class="skill">agentbase-teardown</span></td><td>Remove all platform resources for a project.</td></tr>
+        <tr><td><span class="skill">brainstorming · writing-plans · test-driven-development …</span></td><td>The superpowers engineering workflow.</td></tr>
+      </table>
+    </section>
+
+    <!-- INSTALL -->
+    <section id="install">
+      <p class="eyebrow">Get it running</p>
+      <h2>Install</h2>
+
+      <h3>Claude Code — try it for one session (no install)</h3>
+      <p>Loads the plugin only for the current session. Great for testing; no conflict with anything installed.</p>
+<pre><code>git clone https://github.com/khoapnt-vng/ai-native-software-development.git
+cd &lt;your-project-folder&gt;
+claude --plugin-dir /absolute/path/to/ai-native-software-development</code></pre>
+
+      <h3>Claude Code — install permanently</h3>
+<pre><code>claude plugin marketplace add khoapnt-vng/ai-native-software-development
+claude plugin install superpowers-plus-agentbase@superpowers-plus-agentbase-dev
+# restart Claude Code</code></pre>
+
+      <div class="note">
+        <strong>Already have the official <code>superpowers</code> plugin?</strong> This suite is a
+        <em>superset</em> (it includes all 14 superpowers skills). Disable the official one first to
+        avoid duplicate-skill collisions:
+        <pre style="margin:.6em 0 0"><code>claude plugin disable superpowers</code></pre>
+      </div>
+
+      <h3>Other harnesses</h3>
+      <p>The repo ships manifests for <strong>Codex</strong> (<code>.codex-plugin/</code>),
+        <strong>Cursor</strong> (<code>.cursor-plugin/</code>), <strong>Gemini</strong>
+        (<code>gemini-extension.json</code>), and <strong>OpenCode</strong> (<code>.opencode/</code>).
+        Point each tool’s installer at this repo. Install per harness if you use more than one.</p>
+
+      <h3>Verify it loaded</h3>
+      <p>Type <code>/</code> and look for <code>superpowers-plus-agentbase:…</code> entries — or just say
+        <span class="say">“set up a spec for a new agent”</span> and watch a skill trigger.</p>
+    </section>
+
+    <!-- STEPS -->
+    <section id="steps">
+      <p class="eyebrow">The workflow</p>
+      <h2>Step by step: build → spec → deploy</h2>
+      <p>Each step is one prompt to your agent; the skill in <strong>bold</strong> triggers automatically.</p>
+      <ol class="steps">
+        <li>
+          <h3>Spec it — <span class="skill">spec-driven-development</span></h3>
+          <p class="say">“I want to build a customer-support agent. Set up the spec.”</p>
+          <p>The agent checks for a project <strong>constitution</strong> (<code>docs/specs/mission.md</code>,
+          <code>tech-stack.md</code>, <code>roadmap.md</code>). None yet? It interviews you (greenfield) or reads
+          your code (legacy), then writes the feature spec: <code>plan.md</code>, <code>requirements.md</code>,
+          <code>validation.md</code> — every acceptance item with a runnable <code>verify:</code> check.</p>
+        </li>
+        <li>
+          <h3>Refine the design — <span class="skill">brainstorming</span></h3>
+          <p class="say">“Let’s design the agent’s conversation flow.”</p>
+          <p>Socratic Q&amp;A, alternatives with trade-offs, a design you approve in chunks.</p>
+        </li>
+        <li>
+          <h3>Plan the work — <span class="skill">writing-plans</span></h3>
+          <p class="say">“Turn the spec into an implementation plan.”</p>
+          <p>Bite-sized tasks (2–5 min each) with exact files, code, and verification steps.</p>
+        </li>
+        <li>
+          <h3>Build it — <span class="skill">subagent-driven-development</span> + <span class="skill">test-driven-development</span></h3>
+          <p class="say">“Execute the plan.”</p>
+          <p>Fresh subagent per task, RED-GREEN-REFACTOR, two-stage review (spec compliance, then code quality).</p>
+        </li>
+        <li>
+          <h3>Set up the platform — <span class="skill">agentbase-wizard</span></h3>
+          <p class="say">“Scaffold this as a GreenNode agent using LangGraph.”</p>
+          <p>Scaffolds the project (LangChain/LangGraph templates) and wires memory
+          (<span class="skill">agentbase-memory</span>), identity &amp; secrets
+          (<span class="skill">agentbase-identity</span>), and LLM access (<span class="skill">agentbase-llm</span>).</p>
+        </li>
+        <li>
+          <h3>Deploy it — <span class="skill">agentbase-deploy</span></h3>
+          <p class="say">“Deploy my agent to GreenNode.”</p>
+          <p>Builds &amp; pushes the image to the container registry, creates/updates the runtime, verifies the endpoint.</p>
+        </li>
+        <li>
+          <h3>Operate it — <span class="skill">agentbase-monitor</span> / <span class="skill">agentbase-teardown</span></h3>
+          <p class="say">“Show my agent’s logs.” … “Tear down all resources for this project.”</p>
+          <p>Logs, metrics, scaling, and one-shot cleanup when you’re done.</p>
+        </li>
+        <li>
+          <h3>Keep specs in sync (throughout)</h3>
+          <p>Ask the agent to make code changes so it updates the related spec at the same time — code and spec never drift apart.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <p class="eyebrow">Good to know</p>
+      <h2>Tips &amp; FAQ</h2>
+      <h3>Do I have to type slash commands?</h3>
+      <p>No. The skills auto-trigger from natural language. Slash commands
+        (<code>/superpowers-plus-agentbase:agentbase-wizard</code>) are there if you want to be explicit.</p>
+      <h3>Where do my specs go?</h3>
+      <p>Into <code>docs/specs/</code> in your project — the constitution at the root, each feature in
+        <code>docs/specs/&lt;feature&gt;/</code>.</p>
+      <h3>Can I use it on an existing codebase?</h3>
+      <p>Yes. On a legacy project the agent explores the code and drafts a constitution for you to correct,
+        then continues the normal workflow.</p>
+      <h3>Does it work without GreenNode?</h3>
+      <p>Yes — the spec + build half is general-purpose. The AgentBase skills are what add GreenNode deployment.</p>
+    </section>
+
+    <footer>
+      <strong>superpowers-plus-agentbase</strong> · fork of
+      <a href="https://github.com/obra/superpowers">obra/superpowers</a> (MIT, © Jesse Vincent) ·
+      AgentBase skills © GreenNode (bundled unmodified) · spec-driven-development © khoapnt-vng.<br>
+      Repo: <a href="https://github.com/khoapnt-vng/ai-native-software-development">khoapnt-vng/ai-native-software-development</a> ·
+      See <code>CREDITS.md</code> and <code>LICENSE</code>.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // active nav highlight on scroll
+  var links=[].slice.call(document.querySelectorAll('nav.side a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onScroll(){
+    var pos=window.scrollY+140,cur=0;
+    secs.forEach(function(s,i){if(s&&s.offsetTop<=pos)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('active',i===cur);});
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>
