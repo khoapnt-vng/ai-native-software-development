@@ -80,6 +80,18 @@
   .footnote{margin-top:14px;color:var(--muted);font-size:clamp(12px,1.4vw,16px)}
   .footnote b{color:var(--green-deep)}
 
+  /* benefit cards (slide 4) */
+  .flowline{margin-top:6px;color:var(--muted);font-size:clamp(14px,1.7vw,20px);max-width:54ch;line-height:1.45}
+  .flowline b{color:var(--orange-deep)} .flowline .g{color:var(--green-deep)}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  .benefit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    box-shadow:var(--shadow);border-left:3px solid var(--orange)}
+  .benefit:nth-child(even){border-left-color:var(--green)}
+  .benefit h4{font-size:clamp(15px,1.8vw,21px);color:var(--ink);margin-bottom:5px}
+  .benefit h4 .ic{margin-right:9px}
+  .benefit p{font-size:clamp(13px,1.45vw,16.5px);color:var(--muted);line-height:1.45}
+  @media(max-width:820px){.benefits{grid-template-columns:1fr}}
+
   pre{background:var(--code-bg);border:1px solid #dfe7df;border-radius:12px;padding:18px 20px;
     font-size:clamp(11px,1.3vw,15px);line-height:1.7;color:var(--code-fg);max-width:none;width:100%;
     white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
@@ -128,7 +140,7 @@
       <span class="badge"><b>build · spec · deploy</b></span>
       <span class="badge">works in <b>plain language</b></span>
     </div>
-    <p class="agenda">Today: <b>Why it exists</b> · <b>What it is</b> · <b>The skills</b> · <b>The flow</b> · <b>How to start</b></p>
+    <p class="agenda">Today: <b>Why it exists</b> · <b>What it is</b> · <b>The skills</b> · <b>What you get</b> · <b>How to start</b></p>
   </section>
 
   <!-- SLIDE 2 — WHY + WHAT -->
@@ -198,38 +210,20 @@
     </div>
   </section>
 
-  <!-- SLIDE 4 — THE FLOW (DETAILED) -->
+  <!-- SLIDE 4 — WHAT THE SUITE GIVES YOU -->
   <section class="slide dense">
     <div class="logo">⚡ <b>SP</b> + <span class="gn">GreenNode</span></div>
-    <p class="eyebrow">How to use it · idea → running agent</p>
-    <h2>The flow</h2>
-    <ul class="tl">
-      <li>
-        <div class="h">Spec it <span class="chip">spec-driven-development</span></div>
-        <div class="d"><span class="say">“Set up the spec for a customer-support agent.”</span> → writes the constitution + feature trio into <code>docs/specs/</code>.</div>
-      </li>
-      <li>
-        <div class="h">Design &amp; plan <span class="chip">brainstorming</span> <span class="chip">writing-plans</span></div>
-        <div class="d">Refines the design in chunks you approve, then breaks it into bite-sized tasks — each with a verify step.</div>
-      </li>
-      <li>
-        <div class="h">Build it <span class="chip">subagent-driven-development</span> <span class="chip">TDD</span></div>
-        <div class="d"><span class="say">“Execute the plan.”</span> → a fresh agent per task, tests first, two-stage review between tasks.</div>
-      </li>
-      <li>
-        <div class="h">Scaffold the agent <span class="chip">agentbase-wizard</span></div>
-        <div class="d"><span class="say">“Scaffold this as a GreenNode agent with LangGraph.”</span> → project + memory, identity &amp; LLM access wired.</div>
-      </li>
-      <li>
-        <div class="h">Deploy it <span class="chip">agentbase-deploy</span></div>
-        <div class="d"><span class="say">“Deploy to GreenNode.”</span> → builds &amp; pushes the image, creates the runtime, verifies the endpoint.</div>
-      </li>
-      <li>
-        <div class="h">Operate it <span class="chip">agentbase-monitor</span> <span class="chip">agentbase-teardown</span></div>
-        <div class="d"><span class="say">“Show my agent's logs.”</span> → logs, metrics, scaling — and one-shot cleanup when you're done.</div>
-      </li>
-    </ul>
-    <p class="footnote"><b>Throughout:</b> the agent updates the related spec whenever code changes — so docs and code never drift. <b>No commands to memorize</b> — skills trigger from what you say.</p>
+    <p class="eyebrow">What it brings you · one suite, end to end</p>
+    <h2>What the full suite gives you</h2>
+    <p class="flowline">One package that takes you from idea to a running agent — <b>spec</b> → <b>build</b> → <span class="g">deploy</span> — without switching tools or losing the thread.</p>
+    <div class="benefits">
+      <div class="benefit"><h4><span class="ic">🧭</span>The whole lifecycle, one package</h4><p>Spec, build, and deploy live together — no stitching separate tools into a pipeline.</p></div>
+      <div class="benefit"><h4><span class="ic">💬</span>No commands to memorize</h4><p>Describe what you want in plain language; the right skill triggers automatically.</p></div>
+      <div class="benefit"><h4><span class="ic">📌</span>Intent that lasts</h4><p>Persistent specs keep your “why” alive across sessions, so the work stops drifting.</p></div>
+      <div class="benefit"><h4><span class="ic">✅</span>Quality by default</h4><p>Tests-first and built-in review mean what you ship actually works.</p></div>
+      <div class="benefit"><h4><span class="ic">🚀</span>From laptop to live</h4><p>Deploy, monitor, and scale your agents on GreenNode infrastructure.</p></div>
+      <div class="benefit"><h4><span class="ic">🧑‍✈️</span>You stay in control</h4><p>You're the architect &amp; reviewer; the agent does the heavy lifting.</p></div>
+    </div>
   </section>
 
   <!-- SLIDE 5 — GET STARTED -->
